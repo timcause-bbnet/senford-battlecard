@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>森福德 競品分析卡 2026</title>
+<style>
+  :root {
+    --bg-primary: #0a0d14;
+    --bg-elevated: #0f131c;
+    --bg-surface: #161b28;
+    --bg-hover: #1e2536;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.72);
+    --text-muted: rgba(255,255,255,0.45);
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --you-win: #10b981;
+    --they-win: #ef4444;
+    --neutral: #f59e0b;
+    --border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', '微軟正黑體', sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+  header h1 span { color: var(--accent); }
+  header p { color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; }
+  .badge {
+    background: rgba(59,130,246,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* Tabs */
+  .tabs-nav {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--text-secondary); background: var(--bg-hover); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-content { display: none; padding: 32px; max-width: 1200px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+  .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary); }
+
+  /* Matrix table */
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .matrix-table th {
+    background: var(--bg-hover);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  .matrix-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .matrix-table tr:last-child td { border-bottom: none; }
+  .matrix-table tr:hover td { background: var(--bg-hover); }
+  .matrix-table th:first-child, .matrix-table td:first-child { min-width: 140px; font-weight: 500; }
+
+  .win  { color: var(--you-win); font-weight: 600; }
+  .lose { color: var(--they-win); font-weight: 600; }
+  .tie  { color: var(--neutral); font-weight: 600; }
+  .dot-win  { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--you-win); margin-right:6px; }
+  .dot-lose { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--they-win); margin-right:6px; }
+  .dot-tie  { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--neutral); margin-right:6px; }
+
+  /* Competitor card grid */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .info-item label { display: block; font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .info-item span { font-size: 0.9rem; font-weight: 500; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  .win-block { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 16px; }
+  .lose-block { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 16px; }
+  .win-block h3 { color: var(--you-win); }
+  .lose-block h3 { color: var(--they-win); }
+
+  ul { list-style: none; padding: 0; }
+  ul li { padding: 5px 0; font-size: 0.875rem; color: var(--text-secondary); padding-left: 16px; position: relative; }
+  ul li::before { content: '•'; position: absolute; left: 0; color: var(--text-muted); }
+
+  .talk-track-list { display: flex; flex-direction: column; gap: 12px; }
+  .talk-track {
+    background: var(--bg-hover);
+    border-radius: 8px;
+    padding: 14px;
+    border-left: 3px solid var(--accent);
+  }
+  .talk-track strong { display: block; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .talk-track p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
+
+  .landmine-list { display: flex; flex-direction: column; gap: 8px; }
+  .landmine {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+  .landmine::before { content: '💡 '; }
+
+  .objection-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .objection-table th { background: var(--bg-hover); padding: 8px 12px; text-align: left; font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  .objection-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .objection-table tr:last-child td { border-bottom: none; }
+  .objection-table td:first-child { color: var(--they-win); font-weight: 500; width: 40%; }
+  .objection-table td:last-child { color: var(--text-secondary); }
+
+  .section-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    margin-top: 24px;
+    font-weight: 600;
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  .tag {
+    display: inline-block;
+    background: rgba(59,130,246,0.12);
+    color: #93c5fd;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    margin: 2px;
+  }
+
+  /* Summary cards at top of matrix */
+  .competitor-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .competitor-summary-card {
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .competitor-summary-card:hover { border-color: var(--accent); }
+  .competitor-summary-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+  .competitor-summary-card p { font-size: 0.75rem; color: var(--text-muted); }
+  .competitor-summary-card .threat-label { font-size: 0.72rem; margin-top: 8px; font-weight: 600; }
+  .threat-high { color: var(--they-win); }
+  .threat-mid  { color: var(--neutral); }
+  .threat-low  { color: var(--you-win); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🛡️ <span>森福德</span> 競品分析卡</h1>
+    <p>產品：旅宿E管家 雲端PMS系統　｜　更新日期：2026年4月15日（v2）</p>
+  </div>
+  <span class="badge">5 家競爭對手</span>
+</header>
+
+<nav class="tabs-nav">
+  <button class="tab-btn active" onclick="switchTab('matrix')">📊 比較矩陣</button>
+  <button class="tab-btn" onclick="switchTab('wise')">靈知科技</button>
+  <button class="tab-btn" onclick="switchTab('owlnest')">奧丁丁</button>
+  <button class="tab-btn" onclick="switchTab('athena')">德安資訊</button>
+  <button class="tab-btn" onclick="switchTab('shalom')">旅安資訊</button>
+  <button class="tab-btn" onclick="switchTab('cloudpms')">雲掌櫃</button>
+</nav>
+
+<!-- ==================== MATRIX ==================== -->
+<div id="matrix" class="tab-content active">
+
+  <div class="card">
+    <h2>競爭對手快覽</h2>
+    <div class="competitor-summary-grid">
+      <div class="competitor-summary-card" onclick="switchTab('wise')">
+        <h4>靈知科技</h4>
+        <p>1990年創立，老牌大廠<br>1,100+ 飯店客戶</p>
+        <div class="threat-label threat-high">⚠ 威脅：高</div>
+      </div>
+      <div class="competitor-summary-card" onclick="switchTab('athena')">
+        <h4>德安資訊</h4>
+        <p>1989年創立，3-5星市場龍頭<br>450+ 飯店客戶</p>
+        <div class="threat-label threat-high">⚠ 威脅：高</div>
+      </div>
+      <div class="competitor-summary-card" onclick="switchTab('owlnest')">
+        <h4>奧丁丁 OwlNest</h4>
+        <p>2010年，區塊鏈背景<br>OTA零抽成為賣點</p>
+        <div class="threat-label threat-mid">△ 威脅：中</div>
+      </div>
+      <div class="competitor-summary-card" onclick="switchTab('shalom')">
+        <h4>旅安資訊 Shalom</h4>
+        <p>2016年，新創雲原生<br>AI動態定價特色</p>
+        <div class="threat-label threat-mid">△ 威脅：中</div>
+      </div>
+      <div class="competitor-summary-card" onclick="switchTab('cloudpms')">
+        <h4>雲掌櫃</h4>
+        <p>中國大陸廠商<br>主打民宿移動化</p>
+        <div class="threat-label threat-low">✓ 威脅：低</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>功能比較矩陣</h2>
+    <div style="overflow-x:auto">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>功能項目</th>
+          <th>🟦 森福德</th>
+          <th>靈知科技</th>
+          <th>奧丁丁</th>
+          <th>德安資訊</th>
+          <th>旅安資訊</th>
+          <th>雲掌櫃</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>系統架構</td>
+          <td><span class="dot-win"></span><span class="win">✓ 全雲端</span></td>
+          <td><span class="dot-tie"></span><span class="tie">雙軌：<br>單機版（主力）<br>全雲PMS（新版）</span></td>
+          <td><span class="dot-win"></span>全雲端</td>
+          <td><span class="dot-tie"></span>混合(A7雲端版)</td>
+          <td><span class="dot-win"></span>AWS全雲端</td>
+          <td><span class="dot-win"></span>全雲端</td>
+        </tr>
+        <tr>
+          <td>前台PMS管理</td>
+          <td><span class="dot-win"></span><span class="win">✓</span></td>
+          <td><span class="dot-win"></span>✓ 完整</td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-win"></span>✓ 完整</td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-win"></span>✓ 簡化版</td>
+        </tr>
+        <tr>
+          <td>官方網站管理</td>
+          <td><span class="dot-win"></span><span class="win">✓ 內建</span></td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+        </tr>
+        <tr>
+          <td>線上訂房系統</td>
+          <td><span class="dot-win"></span><span class="win">✓</span></td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-tie"></span>官網零抽成<br><small style="color:var(--they-win)">⚠ GHA每筆抽15%</small></td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-lose"></span><span class="lose">✗ 無</span></td>
+          <td><span class="dot-win"></span>✓</td>
+        </tr>
+        <tr>
+          <td>OTA通路管理</td>
+          <td><span class="dot-lose"></span><span class="lose">4個通路<br><small>(Booking/Agoda/Trip/易遊網)</small></span></td>
+          <td><span class="dot-win"></span>✓ 完整</td>
+          <td><span class="dot-win"></span>✓ 8大平台</td>
+          <td><span class="dot-win"></span>✓ 完整</td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-win"></span>✓ 8大平台</td>
+        </tr>
+        <tr>
+          <td>會員管理系統</td>
+          <td><span class="dot-win"></span><span class="win">✓ 內建</span></td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-tie"></span>基礎</td>
+          <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-tie"></span>基礎</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+        </tr>
+        <tr>
+          <td>簡訊發送系統</td>
+          <td><span class="dot-tie"></span><span class="tie">✓ 內建儲值制<br><small>NT$6,300 / 5,000封</small></span></td>
+          <td><span class="dot-tie"></span>需外掛</td>
+          <td><span class="dot-tie"></span>需外掛</td>
+          <td><span class="dot-tie"></span>需外掛</td>
+          <td><span class="dot-tie"></span>需外掛</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+        </tr>
+        <tr>
+          <td>網路購物系統</td>
+          <td><span class="dot-win"></span><span class="win">✓ 內建</span></td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span>✓ 有</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無（v2已確認）</td>
+        </tr>
+        <tr>
+          <td>ERP後台財務</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span>✓ 完整</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span>✓ 完整</td>
+          <td><span class="dot-tie"></span>基礎</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+        </tr>
+        <tr>
+          <td>AI動態定價</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span>✓ RMS</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+        </tr>
+        <tr>
+          <td>收費模式</td>
+          <td><span class="dot-tie"></span>月租制<br><small style="color:var(--text-muted)">(較靈知月租高)</small></td>
+          <td><span class="dot-tie"></span>建置費+年維護金<br><small style="color:var(--text-muted)">單機主機費百萬起</small></td>
+          <td><span class="dot-win"></span>月租制</td>
+          <td><span class="dot-tie"></span>建置費+年維護金<br><small style="color:var(--text-muted)">大型飯店規格報價</small></td>
+          <td><span class="dot-win"></span>月租制</td>
+          <td><span class="dot-win"></span>月租/免費版</td>
+        </tr>
+        <tr>
+          <td>主要目標客群</td>
+          <td>中小型飯店/民宿</td>
+          <td>中大型飯店</td>
+          <td>民宿/旅館</td>
+          <td>3-5星大型飯店</td>
+          <td>中小型飯店/民宿</td>
+          <td>民宿/客棧</td>
+        </tr>
+        <tr>
+          <td>成立年份</td>
+          <td>—</td>
+          <td>1990年 (35年)</td>
+          <td>2010年 (16年)</td>
+          <td>1989年 (37年)</td>
+          <td>2016年 (10年)</td>
+          <td>2012年 (14年)</td>
+        </tr>
+        <tr>
+          <td>伺服器據點</td>
+          <td>台灣</td>
+          <td>台灣</td>
+          <td>台灣</td>
+          <td>台灣</td>
+          <td>台灣 (AWS)</td>
+          <td><span class="lose">中國大陸 ⚠</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>森福德 核心優勢</h2>
+    <div class="two-col">
+      <div>
+        <p class="section-title">獨有功能（對手沒有）</p>
+        <ul>
+          <li><strong>官網管理 + PMS 一體整合</strong>——不需另外購買建站工具</li>
+          <li><strong>內建網路購物系統</strong>——可售賣周邊商品、套裝方案</li>
+          <li><strong>內建簡訊發送</strong>——確認信、促銷訊息不需外掛第三方</li>
+          <li><strong>會員管理完整內建</strong>——回客經營不需額外CRM系統</li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-title">定位優勢</p>
+        <ul>
+          <li><strong>月租制，輕鬆入門</strong>——無需高額前置建置費</li>
+          <li><strong>雲端即用</strong>——不需採購伺服器或IT人員</li>
+          <li><strong>一站式整合</strong>——中小型業者最需要的功能全部到位</li>
+          <li><strong>台灣在地服務</strong>——中文介面、繁體支援</li>
+          <li style="color:var(--neutral)">⚠ <strong>待強化</strong>：目前OTA通路僅4個（Booking/Agoda/Trip/易遊網），競爭對手普遍串接8個以上，需主動說明「深度整合」的優勢或規劃擴充</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== 靈知科技 ==================== -->
+<div id="wise" class="tab-content">
+  <div class="card">
+    <h2>🔍 靈知科技股份有限公司</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>成立年份</label><span>1990年（35年資歷）</span></div>
+      <div class="info-item"><label>客戶規模</label><span>1,100+ 家飯店</span></div>
+      <div class="info-item"><label>系統架構</label><span>雙軌：單機版＋全雲PMS</span></div>
+      <div class="info-item"><label>收費模式</label><span>單機：建置費＋年維護金<br>全雲：訂閱月租制</span></div>
+      <div class="info-item"><label>教學市場</label><span>23所大專院校採用</span></div>
+      <div class="info-item"><label>官網</label><span><a href="https://www.wise.com.tw" target="_blank" style="color:var(--accent)">wise.com.tw</a></span></div>
+      <div class="info-item"><label>威脅等級</label><span style="color:var(--they-win)">高</span></div>
+    </div>
+    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:8px;padding:12px 16px;margin-bottom:16px">
+      <p style="color:#fcd34d;font-size:0.85rem;line-height:1.6">
+        ℹ <strong>靈知有雙軌產品線</strong>：<br>
+        ① <strong>傳統單機版</strong>（主力產品）——需在飯店建置主機，一次性建置費＋年度維護金，主攻大型飯店。<br>
+        ② <strong>全雲PMS</strong>（新推出）——訂閱制，已上架政府台灣雲市集（TCloud），可申請補助，主打中小型旅宿。<br>
+        全雲版本為近年推出，功能成熟度、客戶規模與單機版相比仍在累積中，但<strong>正式進入我們的目標客群</strong>，競爭力值得留意。
+      </p>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+      台灣最老牌PMS廠商之一，深耕35年，擁有龐大客戶基礎與品牌公信力。主攻中大型連鎖飯店與教育機構市場，產品線完整但架構為傳統單機，對中小型旅宿的IT負擔較重。
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="win-block">
+      <h3>✅ 我方優勢（對比靈知全雲版）</h3>
+      <ul>
+        <li>官網管理系統內建——靈知全雲版無此功能</li>
+        <li>網路購物系統（靈知無論單機或雲端皆缺乏）</li>
+        <li>內建簡訊發送（靈知需另外外掛）</li>
+        <li>完整會員管理系統</li>
+        <li>全雲版本較成熟、客戶口碑已建立</li>
+        <li>靈知全雲版仍在累積期，我們長期深耕中小旅宿更有經驗</li>
+      </ul>
+    </div>
+    <div class="lose-block">
+      <h3>⚠ 對方優勢（靈知強項）</h3>
+      <ul>
+        <li>35年品牌歷史，市場信任度高</li>
+        <li>1,100家客戶實績背書（單機版累積）</li>
+        <li>完整ERP財務後台（森福德無）</li>
+        <li>大專院校採用，業界標準認知度高</li>
+        <li>全雲版可搭配政府TCloud補助，降低導入成本</li>
+        <li>單機版資料在本地，部分業者有安全感</li>
+        <li>我們月租費比靈知全雲版稍高——需主動說明價值</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">話術建議</p>
+    <div class="talk-track-list">
+      <div class="talk-track">
+        <strong>客戶正在評估靈知全雲PMS時</strong>
+        <p>「靈知全雲版是新產品，品牌背書確實很強，但全雲版的功能成熟度和客戶口碑還在建立中。我們長期專注中小型旅宿，這個規模的旅宿有哪些痛點、要哪些功能，我們比靈知更清楚。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶說「靈知月租比你們便宜」</strong>
+        <p>「靈知全雲版確實月租稍低一些，但我們有靈知沒有的功能：官網管理、線上購物、內建簡訊。如果您另外建網站、買電商工具、用簡訊平台，費用加起來一定超過我們的差額。而且我們是一站式管理，節省的時間和人力成本也要算進去。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶考慮靈知傳統單機版時</strong>
+        <p>「靈知單機版需要在您這邊建置主機、設環境，這部分的一次性費用和日後維護金值得確認清楚。我們雲端月租沒有前期投資，萬一業務有調整也更有彈性，不會被硬體綁住。」</p>
+      </div>
+    </div>
+    <p class="section-title" style="margin-top:20px">地雷問題（引導客戶思考靈知的弱點）</p>
+    <div class="landmine-list">
+      <div class="landmine">靈知全雲版推出多久了？目前有多少家旅宿在用？口碑如何？</div>
+      <div class="landmine">靈知全雲版有沒有官方網站管理和線上購物功能？</div>
+      <div class="landmine">靈知月租包含哪些功能？有沒有功能是要另外加購的？</div>
+      <div class="landmine">如果考慮靈知單機版，建置費和年維護金大概是多少？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">常見客戶異議回應</p>
+    <table class="objection-table">
+      <thead><tr><th>客戶說的</th><th>建議回應</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>「靈知名氣比較大，感覺比較放心」</td>
+          <td>大品牌確實有保障，但靈知是單機版，對中小型旅宿來說IT負擔很重。我們雲端架構讓您不用煩惱硬體，而且服務的客群跟您規模相近，更了解您的需求。</td>
+        </tr>
+        <tr>
+          <td>「靈知月租比你們便宜」</td>
+          <td>靈知的月租只是授權費，建置費、主機費、IT維護都是另計的。我們月租含全套功能，您需要再把靈知的隱藏成本全部加進去比較，才是真實的數字。</td>
+        </tr>
+        <tr>
+          <td>「靈知資料放在本地比較安全」</td>
+          <td>本地存放代表硬碟壞掉、火災水災就可能全部不見。我們雲端系統有自動異地備份，反而更安全，而且隨時可以從任何地方登入查看。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 奧丁丁 ==================== -->
+<div id="owlnest" class="tab-content">
+  <div class="card">
+    <h2>🔍 奧丁丁 OwlNest</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>成立年份</label><span>2010年（16年）</span></div>
+      <div class="info-item"><label>集團背景</label><span>OwlTing集團（美股上市）</span></div>
+      <div class="info-item"><label>官網直訂</label><span>零抽成</span></div>
+      <div class="info-item"><label>GHA抽成</label><span style="color:var(--they-win)">⚠ 每筆訂單 15%</span></div>
+      <div class="info-item"><label>OTA串接</label><span>Agoda/Booking/Airbnb/Expedia等</span></div>
+      <div class="info-item"><label>官網</label><span><a href="https://www.owlting.com/owlnest" target="_blank" style="color:var(--accent)">owlting.com</a></span></div>
+      <div class="info-item"><label>威脅等級</label><span style="color:var(--neutral)">中</span></div>
+    </div>
+    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:8px;padding:12px 16px;margin-bottom:16px">
+      <p style="color:#fcd34d;font-size:0.85rem;line-height:1.6">
+        ⚠ <strong>「零抽成」有但書</strong>：奧丁丁官網直訂確實零抽成，但若透過其 <strong>Google Hotel Ads（GHA）</strong>曝光服務帶進的訂單，每筆需抽取 <strong>15%</strong> 佣金。業者若大量仰賴GHA導流，實際成本不低於OTA。
+      </p>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+      台灣新創，母公司OwlTing結合區塊鏈技術與旅宿SaaS，OwlNest主打「官網直訂零抽成」，但實際啟用GHA廣告服務時每筆抽15%，需留意實際費用結構。
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="win-block">
+      <h3>✅ 我方優勢（對比奧丁丁）</h3>
+      <ul>
+        <li>無隱藏抽成——我們不抽任何訂單佣金</li>
+        <li>內建官網管理，功能更完整</li>
+        <li>會員管理系統完整內建</li>
+        <li>內建網路購物（奧丁丁無此功能）</li>
+        <li>內建簡訊行銷工具（奧丁丁需外掛）</li>
+        <li>專注旅宿，無幣圈業務分散資源</li>
+      </ul>
+    </div>
+    <div class="lose-block">
+      <h3>⚠ 對方優勢（奧丁丁強項）</h3>
+      <ul>
+        <li>官網純直訂確實零抽成（前提是不走GHA）</li>
+        <li>Google Hotel Ads整合曝光，可提升能見度</li>
+        <li>美股上市公司，資金較充裕</li>
+        <li>OTA串接數量豐富（8大平台）</li>
+        <li>品牌行銷曝光度高</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">話術建議</p>
+    <div class="talk-track-list">
+      <div class="talk-track">
+        <strong>客戶被「零抽成」吸引時</strong>
+        <p>「奧丁丁說零抽成，但您有沒有問過他們 Google Hotel Ads 的費用？透過 GHA 帶進來的訂單，每筆要抽 15%，跟 Booking.com 的抽成差不多。所謂的零抽成，是純官網直訂才成立。如果您打算靠 GHA 增加曝光，這筆費用不小。我們不抽任何訂單，月租費用透明。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶考慮用奧丁丁的GHA功能</strong>
+        <p>「GHA 確實是個好工具，但每筆 15% 的抽成，您等於是換了一個 OTA。更長遠的做法是靠會員經營和簡訊行銷，讓住過的客人直接回訂，不用每筆都付廣告費。我們這兩個功能都是內建的。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶擔心奧丁丁幣圈方向</strong>
+        <p>「奧丁丁這幾年積極往跨境支付和幣圈發展，旅宿系統不再是他們的核心業務。您需要一個以旅宿為本的長期夥伴，我們 100% 專注旅宿，售後服務和更新節奏更穩定。」</p>
+      </div>
+    </div>
+    <p class="section-title" style="margin-top:20px">地雷問題</p>
+    <div class="landmine-list">
+      <div class="landmine">請問奧丁丁的 Google Hotel Ads 服務，每筆訂單的抽成是多少？</div>
+      <div class="landmine">如果不走 GHA，您的官網直訂流量能有多少？零抽成的效益實際上有多大？</div>
+      <div class="landmine">奧丁丁有沒有提供完整的會員管理和簡訊行銷功能？</div>
+      <div class="landmine">您有沒有在官網銷售套裝方案或周邊商品的需求？奧丁丁支援嗎？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">常見客戶異議回應</p>
+    <table class="objection-table">
+      <thead><tr><th>客戶說的</th><th>建議回應</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>「奧丁丁零抽成比你們划算」</td>
+          <td>零抽成只在純官網直訂時成立。一旦啟用 GHA，每筆訂單抽 15%，成本跟 OTA 相當。我們月租透明，不抽任何訂單，實際算起來成本更可預測。</td>
+        </tr>
+        <tr>
+          <td>「奧丁丁上市公司感覺比較穩」</td>
+          <td>上市不代表旅宿業務是核心。他們主力在跨境支付和幣圈，旅宿系統的研發投入相對有限。我們百分之百專注旅宿，功能更新和客服更及時。</td>
+        </tr>
+        <tr>
+          <td>「GHA可以幫我增加曝光很吸引人」</td>
+          <td>GHA 曝光確實有價值，但每筆 15% 是長期持續的費用。我們建議您同時經營會員系統和簡訊回訪，把 OTA 客人轉成直訂回頭客，才是可持續的低成本策略。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 德安資訊 ==================== -->
+<div id="athena" class="tab-content">
+  <div class="card">
+    <h2>🔍 德安資訊股份有限公司（Athena）</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>成立年份</label><span>1989年（37年資歷）</span></div>
+      <div class="info-item"><label>客戶規模</label><span>450+ 飯店/餐廳/教育機構</span></div>
+      <div class="info-item"><label>主打市場</label><span>3-5星大型飯店</span></div>
+      <div class="info-item"><label>市場地位</label><span>台灣高端飯店市場龍頭</span></div>
+      <div class="info-item"><label>官網</label><span><a href="https://www.athena.com.tw" target="_blank" style="color:var(--accent)">athena.com.tw</a></span></div>
+      <div class="info-item"><label>威脅等級</label><span style="color:var(--they-win)">高（大飯店下轉）</span></div>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+      台灣最資深的飯店資訊系統廠商，專注3-5星大型連鎖飯店市場，提供從PMS到ERP的全方位解決方案。近年推出A7雲端PMS版本，開始往中小型市場延伸，與森福德的目標客群有重疊。
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="win-block">
+      <h3>✅ 我方優勢（對比德安）</h3>
+      <ul>
+        <li>官網管理內建，德安無此功能</li>
+        <li>網路購物系統（德安完全沒有）</li>
+        <li>內建簡訊發送工具</li>
+        <li>月租制，無需高額前置授權金</li>
+        <li>操作輕量，不需IT部門維護</li>
+        <li>中小型旅宿的功能更貼近需求</li>
+      </ul>
+    </div>
+    <div class="lose-block">
+      <h3>⚠ 對方優勢（德安強項）</h3>
+      <ul>
+        <li>37年業界第一老牌</li>
+        <li>完整ERP財務/採購/庫存系統</li>
+        <li>POS餐飲系統整合</li>
+        <li>大飯店客戶背書強</li>
+        <li>有雲端A7版本，正在向下延伸</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">話術建議</p>
+    <div class="talk-track-list">
+      <div class="talk-track">
+        <strong>客戶考慮德安A7雲端版時</strong>
+        <p>「德安的A7確實開始做雲端了，但他們的根基是大型飯店，系統邏輯和操作介面仍然是為有IT部門的大飯店設計。貴飯店用德安，很多功能你不需要、你也可能用不到，卻要付大飯店等級的費用。我們是從中小型旅宿的角度設計，入門門檻低很多，而且官網、購物、會員都是內建的。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶說「德安是大品牌，售後有保障」</strong>
+        <p>「德安品牌確實很強，主要服務對象是連鎖大飯店，那些客戶IT預算充裕，可以等他們排服務。中小型旅宿如果遇到問題，排在大客戶後面可能要等很久。我們的客戶規模跟您相近，客服優先級更高，回應更即時。」</p>
+      </div>
+    </div>
+    <p class="section-title" style="margin-top:20px">地雷問題</p>
+    <div class="landmine-list">
+      <div class="landmine">德安A7的月費怎麼算？有沒有按間數計費或功能模組另計的情況？</div>
+      <div class="landmine">德安的系統有沒有內建官方網站管理功能？</div>
+      <div class="landmine">如果您需要在官網賣套裝或體驗，德安能做到嗎？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">常見客戶異議回應</p>
+    <table class="objection-table">
+      <thead><tr><th>客戶說的</th><th>建議回應</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>「德安是最老牌的，出問題有人負責」</td>
+          <td>老牌確實有保障，但我們也在這個產業深耕多年，服務的都是中小型旅宿，您遇到的問題我們最清楚。而且老牌不代表適合每種規模，德安的核心市場不是像您這樣的旅宿。</td>
+        </tr>
+        <tr>
+          <td>「德安功能比你們多很多」</td>
+          <td>功能多不代表適合，貴飯店需要的是能實際用到的功能。我們的官網管理、線上購物、會員行銷是德安沒有的，而這些對中小型旅宿直接創造收入。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 旅安資訊 ==================== -->
+<div id="shalom" class="tab-content">
+  <div class="card">
+    <h2>🔍 旅安資訊股份有限公司（Shalom PMS）</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>成立年份</label><span>2016年（10年）</span></div>
+      <div class="info-item"><label>技術架構</label><span>AWS雲端，異地備份</span></div>
+      <div class="info-item"><label>特色功能</label><span>AI動態定價（RMS）</span></div>
+      <div class="info-item"><label>線上訂房</label><span style="color:var(--they-win)">✗ 無（需外掛）</span></div>
+      <div class="info-item"><label>主打市場</label><span>中小型飯店、旅館、民宿</span></div>
+      <div class="info-item"><label>官網</label><span><a href="https://www.shalom.com.tw" target="_blank" style="color:var(--accent)">shalom.com.tw</a></span></div>
+      <div class="info-item"><label>威脅等級</label><span style="color:var(--neutral)">中（直接競爭）</span></div>
+    </div>
+    <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:10px 14px;margin-bottom:14px">
+      <p style="color:#fca5a5;font-size:0.82rem">⚠ <strong>注意：旅安沒有線上訂房系統</strong>，客戶需搭配其他訂房工具使用。</p>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+      2016年成立的新創，由國際工程師與旅宿業聯手設計，主打UX優化與雲原生架構。與森福德目標客群重疊度高，但缺乏線上訂房系統，這是明顯的功能缺口。特色是AI動態定價（RMS）模組，以及365天全年線上客服。
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="win-block">
+      <h3>✅ 我方優勢（對比旅安）</h3>
+      <ul>
+        <li><strong>內建線上訂房系統</strong>——旅安沒有，需另外整合工具</li>
+        <li>官方網站管理內建（旅安無）</li>
+        <li>網路購物系統（旅安無）</li>
+        <li>內建簡訊發送（旅安需外掛）</li>
+        <li>完整會員管理系統</li>
+        <li>一站式整合度更高，管理更簡單</li>
+      </ul>
+    </div>
+    <div class="lose-block">
+      <h3>⚠ 對方優勢（旅安強項）</h3>
+      <ul>
+        <li>AI動態定價RMS（森福德無）</li>
+        <li>AWS異地備份，資安標準較高</li>
+        <li>365天全年線上客服</li>
+        <li>UX設計強調，介面現代感</li>
+        <li>iKala Cloud深度合作，技術力強</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">話術建議</p>
+    <div class="talk-track-list">
+      <div class="talk-track">
+        <strong>客戶被AI動態定價吸引時</strong>
+        <p>「旅安的RMS動態定價聽起來很酷，但對於客房數不多的旅宿來說，動態定價的效益需要一定的數據量才能發揮。如果您的房數較少，與其花成本在定價演算，不如先把官網直訂、會員回購率拉起來，我們這兩塊都有完整的工具。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>與旅安直接比較時</strong>
+        <p>「旅安最明顯的缺口是沒有線上訂房系統——客人沒辦法直接在旅安的平台上完成訂房，您還需要另外接第三方工具。我們的訂房系統是內建的，加上官網管理、購物、會員，是真正的一站式，旅安這幾塊都要靠外掛拼湊。」</p>
+      </div>
+    </div>
+    <p class="section-title" style="margin-top:20px">地雷問題</p>
+    <div class="landmine-list">
+      <div class="landmine">旅安有沒有線上訂房系統？客人怎麼在您官網直接完成預訂？</div>
+      <div class="landmine">旅安的系統有提供官方網站管理和線上商店功能嗎？</div>
+      <div class="landmine">請問您目前有多少間客房？動態定價對您的規模效益大嗎？</div>
+      <div class="landmine">旅安的月費包含哪些模組？RMS是另外計費嗎？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">常見客戶異議回應</p>
+    <table class="objection-table">
+      <thead><tr><th>客戶說的</th><th>建議回應</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>「旅安有AI定價很先進」</td>
+          <td>AI定價需要足夠的歷史訂房數據才有效。房數少的旅宿建議先把直訂比例和回客率做起來，效益更直接。我們的會員和行銷工具就是為此設計的。</td>
+        </tr>
+        <tr>
+          <td>「旅安介面比較漂亮」</td>
+          <td>介面確實很重要，我們也很重視操作體驗。不過更重要的是功能完整度——我們多了官網管理和購物系統，可以直接幫您增加額外收入。我們可以讓您試用看看。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 雲掌櫃 ==================== -->
+<div id="cloudpms" class="tab-content">
+  <div class="card">
+    <h2>🔍 雲掌櫃（360PMS）</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>成立年份</label><span>2012年（14年）</span></div>
+      <div class="info-item"><label>公司據點</label><span>中國大陸（上海）⚠</span></div>
+      <div class="info-item"><label>主打市場</label><span>中小型民宿、客棧</span></div>
+      <div class="info-item"><label>特色</label><span>移動化操作、簡單易用</span></div>
+      <div class="info-item"><label>官網</label><span><a href="https://www.360pms.com" target="_blank" style="color:var(--accent)">360pms.com</a></span></div>
+      <div class="info-item"><label>威脅等級</label><span style="color:var(--you-win)">低</span></div>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+      中國大陸廠商，強調極度簡單的移動化操作，主打中小型民宿與客棧。台灣市場上偶爾出現，但因資料存放在中國大陸伺服器，在台灣有明顯的合規與資安疑慮，威脅相對有限。
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="win-block">
+      <h3>✅ 我方優勢（對比雲掌櫃）</h3>
+      <ul>
+        <li><strong>伺服器在台灣</strong>，資料主權無疑慮</li>
+        <li>官方網站管理內建</li>
+        <li>會員管理系統完整</li>
+        <li>網路購物系統</li>
+        <li>內建簡訊發送</li>
+        <li>繁體中文介面，在地客服</li>
+        <li>符合台灣法規與個資法</li>
+      </ul>
+    </div>
+    <div class="lose-block">
+      <h3>⚠ 對方優勢（雲掌櫃強項）</h3>
+      <ul>
+        <li>操作極為簡單，學習成本最低</li>
+        <li>行動端體驗優</li>
+        <li>部分方案免費或低價切入</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">話術建議</p>
+    <div class="talk-track-list">
+      <div class="talk-track">
+        <strong>客戶被低價/免費吸引時</strong>
+        <p>「雲掌櫃確實很便宜，但您知道他們的伺服器在中國大陸嗎？您客人的個資、訂房紀錄都存在那邊。台灣的個資法對資料存放有規範，萬一有問題，風險都在您這邊。我們的系統資料在台灣，合法合規，客人個資有保障。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶說「用起來很簡單就好」</strong>
+        <p>「操作簡單是對的方向，我們也重視易用性。但除了簡單，您還需要官網管理、會員行銷、訂房系統——這些雲掌櫃都沒有。用雲掌櫃還需要另外建網站、另外做行銷，加起來反而更麻煩。」</p>
+      </div>
+    </div>
+    <p class="section-title" style="margin-top:20px">地雷問題</p>
+    <div class="landmine-list">
+      <div class="landmine">您知道雲掌櫃的資料是存在哪裡的伺服器嗎？有沒有資安疑慮？</div>
+      <div class="landmine">雲掌櫃有提供繁體中文客服嗎？台灣有服務人員嗎？</div>
+      <div class="landmine">您有沒有計畫在官網做行銷、賣套裝方案？雲掌櫃支援嗎？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">常見客戶異議回應</p>
+    <table class="objection-table">
+      <thead><tr><th>客戶說的</th><th>建議回應</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>「雲掌櫃免費，比你們便宜很多」</td>
+          <td>免費的代價是資料放在中國大陸伺服器，這在個資保護上有實質風險。我們雖然有月費，但提供官網、購物、會員行銷全套功能，省下外包建站和行銷工具的費用，整體更划算。</td>
+        </tr>
+        <tr>
+          <td>「朋友的民宿也在用，說還不錯」</td>
+          <td>簡單的民宿可能還好，但如果您未來想做行銷、賣套裝、經營會員，雲掌櫃的天花板很快就到了。而且一旦換系統，資料搬遷很麻煩。一開始就選對平台，長遠來說更划算。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const map = { matrix:0, wise:1, owlnest:2, athena:3, shalom:4, cloudpms:5 };
+  btns[map[id]].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
