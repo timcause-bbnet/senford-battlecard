@@ -209,7 +209,7 @@
 <header>
   <div>
     <h1>🛡️ <span>森福德</span> 競品分析卡</h1>
-    <p>產品：旅宿E管家 雲端PMS系統　｜　更新日期：2026年4月15日（v2）</p>
+    <p>產品：旅宿E管家 雲端PMS系統　｜　更新日期：2026年4月16日（v3）</p>
   </div>
   <span class="badge">5 家競爭對手</span>
 </header>
@@ -221,6 +221,7 @@
   <button class="tab-btn" onclick="switchTab('athena')">德安資訊</button>
   <button class="tab-btn" onclick="switchTab('shalom')">旅安資訊</button>
   <button class="tab-btn" onclick="switchTab('cloudpms')">雲掌櫃</button>
+  <button class="tab-btn" onclick="switchTab('dunqian')">敦謙國際</button>
 </nav>
 
 <!-- ==================== MATRIX ==================== -->
@@ -254,6 +255,11 @@
         <p>中國大陸廠商<br>主打民宿移動化</p>
         <div class="threat-label threat-low">✓ 威脅：低</div>
       </div>
+      <div class="competitor-summary-card" onclick="switchTab('dunqian')">
+        <h4>敦謙國際</h4>
+        <p>HoTech廠商，PMS＋智能硬體<br>自助機台、機器人、QR門鎖</p>
+        <div class="threat-label threat-mid">△ 威脅：中高</div>
+      </div>
     </div>
   </div>
 
@@ -270,6 +276,7 @@
           <th>德安資訊</th>
           <th>旅安資訊</th>
           <th>雲掌櫃</th>
+          <th>敦謙國際</th>
         </tr>
       </thead>
       <tbody>
@@ -281,6 +288,7 @@
           <td><span class="dot-tie"></span>混合(A7雲端版)</td>
           <td><span class="dot-win"></span>AWS全雲端</td>
           <td><span class="dot-win"></span>全雲端</td>
+          <td><span class="dot-win"></span>全雲端＋IoT</td>
         </tr>
         <tr>
           <td>前台PMS管理</td>
@@ -290,12 +298,14 @@
           <td><span class="dot-win"></span>✓ 完整</td>
           <td><span class="dot-win"></span>✓</td>
           <td><span class="dot-win"></span>✓ 簡化版</td>
+          <td><span class="dot-win"></span>✓ 完整</td>
         </tr>
         <tr>
           <td>官方網站管理</td>
           <td><span class="dot-win"></span><span class="win">✓ 內建</span></td>
           <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-lose"></span>✗ 無</td>
@@ -308,6 +318,7 @@
           <td><span class="dot-win"></span>✓</td>
           <td><span class="dot-lose"></span><span class="lose">✗ 無</span></td>
           <td><span class="dot-win"></span>✓</td>
+          <td><span class="dot-win"></span>✓ 自助訂房</td>
         </tr>
         <tr>
           <td>OTA通路管理</td>
@@ -317,6 +328,7 @@
           <td><span class="dot-win"></span>✓ 完整</td>
           <td><span class="dot-win"></span>✓</td>
           <td><span class="dot-win"></span>✓ 8大平台</td>
+          <td><span class="dot-tie"></span>基礎</td>
         </tr>
         <tr>
           <td>會員管理系統</td>
@@ -326,6 +338,7 @@
           <td><span class="dot-win"></span>✓</td>
           <td><span class="dot-tie"></span>基礎</td>
           <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-tie"></span>基礎</td>
         </tr>
         <tr>
           <td>簡訊發送系統</td>
@@ -334,6 +347,7 @@
           <td><span class="dot-tie"></span>需外掛</td>
           <td><span class="dot-tie"></span>需外掛</td>
           <td><span class="dot-tie"></span>需外掛</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-lose"></span>✗ 無</td>
         </tr>
         <tr>
@@ -344,6 +358,7 @@
           <td><span class="dot-win"></span>✓ 有</td>
           <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-lose"></span>✗ 無（v2已確認）</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
         </tr>
         <tr>
           <td>ERP後台財務</td>
@@ -352,6 +367,7 @@
           <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-win"></span>✓ 完整</td>
           <td><span class="dot-tie"></span>基礎</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-lose"></span>✗ 無</td>
         </tr>
         <tr>
@@ -362,6 +378,27 @@
           <td><span class="dot-lose"></span>✗ 無</td>
           <td><span class="dot-win"></span>✓ RMS</td>
           <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span><span class="win">✓ 收益管理系統</span></td>
+        </tr>
+        <tr>
+          <td>手機雲端自助報到<br><small>（免機器）</small></td>
+          <td><span class="dot-win"></span><span class="win">✓ 手機免機器</span></td>
+          <td><span class="dot-lose"></span><span class="lose">需自助報到機 ⚠</span></td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span><span class="lose">需自助報到機 ⚠</span></td>
+          <td><span class="dot-win"></span>✓ 手機免機器</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>需硬體設備</td>
+        </tr>
+        <tr>
+          <td>智能硬體整合<br><small>（自助機台/QR門鎖/機器人）</small></td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-lose"></span>✗ 無</td>
+          <td><span class="dot-win"></span><span class="win">✓ 核心強項</span></td>
         </tr>
         <tr>
           <td>收費模式</td>
@@ -371,6 +408,7 @@
           <td><span class="dot-tie"></span>建置費+年維護金<br><small style="color:var(--text-muted)">大型飯店規格報價</small></td>
           <td><span class="dot-win"></span>月租制</td>
           <td><span class="dot-win"></span>月租/免費版</td>
+          <td><span class="dot-tie"></span>月租＋硬體費</td>
         </tr>
         <tr>
           <td>主要目標客群</td>
@@ -380,6 +418,7 @@
           <td>3-5星大型飯店</td>
           <td>中小型飯店/民宿</td>
           <td>民宿/客棧</td>
+          <td><span class="dot-tie"></span>各規模旅宿</td>
         </tr>
         <tr>
           <td>成立年份</td>
@@ -389,6 +428,7 @@
           <td>1989年 (37年)</td>
           <td>2016年 (10年)</td>
           <td>2012年 (14年)</td>
+          <td><span class="dot-win"></span>2015年 (11年)</td>
         </tr>
         <tr>
           <td>伺服器據點</td>
@@ -398,6 +438,7 @@
           <td>台灣</td>
           <td>台灣 (AWS)</td>
           <td><span class="lose">中國大陸 ⚠</span></td>
+          <td><span class="dot-win"></span>台灣</td>
         </tr>
       </tbody>
     </table>
@@ -422,6 +463,7 @@
           <li><strong>月租制，輕鬆入門</strong>——無需高額前置建置費</li>
           <li><strong>雲端即用</strong>——不需採購伺服器或IT人員</li>
           <li><strong>一站式整合</strong>——中小型業者最需要的功能全部到位</li>
+          <li><strong>手機雲端自助報到</strong>——免購置實體機器，客人用手機完成入住</li>
           <li><strong>台灣在地服務</strong>——中文介面、繁體支援</li>
           <li style="color:var(--neutral)">⚠ <strong>待強化</strong>：目前OTA通路僅4個（Booking/Agoda/Trip/易遊網），競爭對手普遍串接8個以上，需主動說明「深度整合」的優勢或規劃擴充</li>
         </ul>
@@ -466,6 +508,7 @@
         <li>內建簡訊發送（靈知需另外外掛）</li>
         <li>完整會員管理系統</li>
         <li>全雲版本較成熟、客戶口碑已建立</li>
+        <li>手機雲端自助報到免機器——靈知需購置自助報到機，我們完全不需要硬體</li>
         <li>靈知全雲版仍在累積期，我們長期深耕中小旅宿更有經驗</li>
       </ul>
     </div>
@@ -478,6 +521,7 @@
         <li>大專院校採用，業界標準認知度高</li>
         <li>全雲版可搭配政府TCloud補助，降低導入成本</li>
         <li>單機版資料在本地，部分業者有安全感</li>
+        <li>靈知也有自助報到機功能，但需購置硬體設備</li>
         <li>我們月租費比靈知全雲版稍高——需主動說明價值</li>
       </ul>
     </div>
@@ -502,6 +546,7 @@
     <p class="section-title" style="margin-top:20px">地雷問題（引導客戶思考靈知的弱點）</p>
     <div class="landmine-list">
       <div class="landmine">靈知全雲版推出多久了？目前有多少家旅宿在用？口碑如何？</div>
+      <div class="landmine">靈知的自助報到機需要另外購買嗎？硬體費用大概是多少？</div>
       <div class="landmine">靈知全雲版有沒有官方網站管理和線上購物功能？</div>
       <div class="landmine">靈知月租包含哪些功能？有沒有功能是要另外加購的？</div>
       <div class="landmine">如果考慮靈知單機版，建置費和年維護金大概是多少？</div>
@@ -537,6 +582,7 @@
     <div class="info-grid">
       <div class="info-item"><label>成立年份</label><span>2010年（16年）</span></div>
       <div class="info-item"><label>集團背景</label><span>OwlTing集團（美股上市）</span></div>
+      <div class="info-item"><label>全球客戶</label><span>2,700+ 家旅宿</span></div>
       <div class="info-item"><label>官網直訂</label><span>零抽成</span></div>
       <div class="info-item"><label>GHA抽成</label><span style="color:var(--they-win)">⚠ 每筆訂單 15%</span></div>
       <div class="info-item"><label>OTA串接</label><span>Agoda/Booking/Airbnb/Expedia等</span></div>
@@ -573,6 +619,7 @@
         <li>美股上市公司，資金較充裕</li>
         <li>OTA串接數量豐富（8大平台）</li>
         <li>品牌行銷曝光度高</li>
+        <li style="color:var(--they-win)">⚠ 曾發生76萬名住客個資外洩事件（2023年），AWS雲端儲存設定不當</li>
       </ul>
     </div>
   </div>
@@ -598,6 +645,7 @@
       <div class="landmine">請問奧丁丁的 Google Hotel Ads 服務，每筆訂單的抽成是多少？</div>
       <div class="landmine">如果不走 GHA，您的官網直訂流量能有多少？零抽成的效益實際上有多大？</div>
       <div class="landmine">奧丁丁有沒有提供完整的會員管理和簡訊行銷功能？</div>
+      <div class="landmine">奧丁丁在2023年發生過76萬住客個資外洩事件，他們如何確保您客人的資料安全？</div>
       <div class="landmine">您有沒有在官網銷售套裝方案或周邊商品的需求？奧丁丁支援嗎？</div>
     </div>
   </div>
@@ -614,6 +662,10 @@
         <tr>
           <td>「奧丁丁上市公司感覺比較穩」</td>
           <td>上市不代表旅宿業務是核心。他們主力在跨境支付和幣圈，旅宿系統的研發投入相對有限。我們百分之百專注旅宿，功能更新和客服更及時。</td>
+        </tr>
+        <tr>
+          <td>「奧丁丁上市公司資料存在AWS應該安全」</td>
+          <td>奧丁丁2023年曾因AWS雲端儲存設定錯誤，造成76萬名住客個資外洩，包含姓名、電話、訂房紀錄。上市不代表資安無慮。我們的客戶資料有嚴格管控，您可以進一步詢問我們的資安機制。</td>
         </tr>
         <tr>
           <td>「GHA可以幫我增加曝光很吸引人」</td>
@@ -714,6 +766,7 @@
       <div class="info-item"><label>線上訂房</label><span style="color:var(--they-win)">✗ 無（需外掛）</span></div>
       <div class="info-item"><label>主打市場</label><span>中小型飯店、旅館、民宿</span></div>
       <div class="info-item"><label>官網</label><span><a href="https://www.shalom.com.tw" target="_blank" style="color:var(--accent)">shalom.com.tw</a></span></div>
+      <div class="info-item"><label>特殊合作</label><span>Booking.com北亞研發夥伴</span></div>
       <div class="info-item"><label>威脅等級</label><span style="color:var(--neutral)">中（直接競爭）</span></div>
     </div>
     <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:10px 14px;margin-bottom:14px">
@@ -740,10 +793,12 @@
       <h3>⚠ 對方優勢（旅安強項）</h3>
       <ul>
         <li>AI動態定價RMS（森福德無）</li>
+        <li>手機雲端自助報到（與我方相同）</li>
         <li>AWS異地備份，資安標準較高</li>
         <li>365天全年線上客服</li>
         <li>UX設計強調，介面現代感</li>
         <li>iKala Cloud深度合作，技術力強</li>
+        <li>Booking.com集團北亞唯一研發合作夥伴（中國除外），深度整合大數據</li>
       </ul>
     </div>
   </div>
@@ -865,13 +920,113 @@
   </div>
 </div>
 
+
+<!-- ==================== 敦謙國際 ==================== -->
+<div id="dunqian" class="tab-content">
+  <div class="card">
+    <h2>🔍 敦謙國際智能科技股份有限公司</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>定位</label><span>HoTech（旅宿科技）</span></div>
+      <div class="info-item"><label>成立</label><span>2015年（11年）</span></div>
+      <div class="info-item"><label>旗下品牌</label><span>11個品牌、53個據點</span></div>
+      <div class="info-item"><label>客房規模</label><span>4,000+ 間（自營）</span></div>
+      <div class="info-item"><label>外部客戶</label><span>HEXA平台700+家採用</span></div>
+      <div class="info-item"><label>特色</label><span>全台首家無人旅館技術</span></div>
+      <div class="info-item"><label>官網</label><span><a href="https://www.dunqian.com" target="_blank" style="color:var(--accent)">dunqian.com</a></span></div>
+      <div class="info-item"><label>威脅等級</label><span style="color:var(--neutral)">中高（科技形象強）</span></div>
+    </div>
+    <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:12px 16px;margin-bottom:16px">
+      <p style="color:#93c5fd;font-size:0.85rem;line-height:1.6">
+        ℹ <strong>敦謙的差異化在於「硬體整合」</strong>：他們不只是 PMS 軟體廠商，而是同時提供自助入住機台、QR Code 電子門鎖、AI 機器人、智能置物等硬體設備，主打「全面無人化」旅館解決方案，技術壁壘高，但導入成本與複雜度也高。
+      </p>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+      敦謙從自家旅館品牌（雀客、承攜、礁溪麒麟等）出發，把內部使用的旅宿管理系統商品化對外銷售，涵蓋 PMS、收益管理系統、智能委管設備等，已輸出至日本市場（WBF 飯店集團），是台灣旅宿科技的代表性品牌。
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="win-block">
+      <h3>✅ 我方優勢（對比敦謙）</h3>
+      <ul>
+        <li><strong>官網管理內建</strong>——敦謙無此功能</li>
+        <li><strong>網路購物系統</strong>——敦謙無此功能</li>
+        <li><strong>內建簡訊發送</strong>——敦謙需外掛</li>
+        <li><strong>完整會員管理</strong>——敦謙僅基礎功能</li>
+        <li><strong>手機雲端自助報到（免機器）</strong>——同樣能做到無人化入住，不需買機台</li>
+        <li><strong>零硬體門檻</strong>——我們純軟體月租，不需採購任何設備</li>
+        <li><strong>導入快速</strong>——敦謙硬體裝設需工程施工，我們開帳號就用</li>
+        <li>對不想「全面無人化」的旅宿，我們更適合</li>
+      </ul>
+    </div>
+    <div class="lose-block">
+      <h3>⚠ 對方優勢（敦謙強項）</h3>
+      <ul>
+        <li>科技形象極強，媒體曝光多（台灣之光、日本輸出）</li>
+        <li>自助入住機台、QR 門鎖、機器人——全套硬體整合</li>
+        <li>自家旅館品牌背書，實戰驗證</li>
+        <li>收益管理系統（Revenue Management）</li>
+        <li>主打「降低人力成本」，訴求清楚</li>
+        <li>國際市場佈局（日本），品牌格局大</li>
+        <li>榮獲Expedia Group「2025卓越耀升典範獎」，國際旅遊業肯定</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">話術建議</p>
+    <div class="talk-track-list">
+      <div class="talk-track">
+        <strong>客戶被「無人化」科技吸引時</strong>
+        <p>「敦謙的科技形象確實很吸引人，但您知道嗎？我們也有手機雲端自助報到功能——客人用手機就能完成入住，完全不需要買任何機台設備。敦謙做到的無人化入住，我們用手機也做得到，而且省去了硬體採購費和工程安裝費，更適合不想大規模改裝的旅宿。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶說「敦謙有名氣，去日本都有了」</strong>
+        <p>「敦謙的品牌很強，但他們對外銷售 PMS 的時間還不算長，客戶口碑還在累積。而且敦謙的強項在硬體整合，如果您不需要那些設備，等於付了很多不需要的成本。我們專注在軟體，官網、訂房、購物、會員一站式，CP 值更高。」</p>
+      </div>
+      <div class="talk-track">
+        <strong>客戶想要「降低人力成本」</strong>
+        <p>「降低人力這個目標我們完全認同。不過敦謙的方式是用硬體取代人力，需要初期的設備投資。我們的方式是讓系統幫您自動化日常工作——自動發確認簡訊、自動管理會員、官網直訂減少 OTA 依賴——不需要換掉任何硬體，從軟體層面先省一輪。」</p>
+      </div>
+    </div>
+    <p class="section-title" style="margin-top:20px">地雷問題</p>
+    <div class="landmine-list">
+      <div class="landmine">敦謙的自助機台和 QR 門鎖，建置費和維護費大概是多少？</div>
+      <div class="landmine">您的客人類型適合全面無人化嗎？有沒有想過客人還是喜歡人工服務？</div>
+      <div class="landmine">敦謙的純 PMS 軟體部分（不含硬體）功能有哪些？官網和購物有嗎？</div>
+      <div class="landmine">敦謙的外部客戶口碑如何？有沒有認識的旅宿業者在用？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="section-title">常見客戶異議回應</p>
+    <table class="objection-table">
+      <thead><tr><th>客戶說的</th><th>建議回應</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>「敦謙是台灣之光，技術力比你們強」</td>
+          <td>敦謙的硬體整合確實是業界少見，但那是針對想要全面無人化的旅宿。如果您的核心需求是訂房管理、官網行銷、會員經營，我們在這幾塊的功能更完整，而且不需要買任何硬體設備。</td>
+        </tr>
+        <tr>
+          <td>「敦謙幫我省人力，長期划算」</td>
+          <td>省人力是對的方向，但敦謙的硬體前期投資不小。我們用軟體自動化幫您省人力——自動簡訊、自動訂房確認、會員自動回訪——先從軟體省起，效益更快看到，成本也更低。</td>
+        </tr>
+        <tr>
+          <td>「敦謙已經輸出日本，很有國際保障」</td>
+          <td>國際市場的成功不代表在台灣中小型旅宿就是最佳解。他們的客戶多半是有規模的連鎖品牌，我們服務的中小型旅宿跟您規模相近，更了解您真正的需求。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <script>
 function switchTab(id) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const btns = document.querySelectorAll('.tab-btn');
-  const map = { matrix:0, wise:1, owlnest:2, athena:3, shalom:4, cloudpms:5 };
+  const map = { matrix:0, wise:1, owlnest:2, athena:3, shalom:4, cloudpms:5, dunqian:6 };
   btns[map[id]].classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
